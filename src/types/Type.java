@@ -1,0 +1,17 @@
+package types;
+
+public enum Type {
+	DARK,
+	DRAGON,
+	EARTH,
+	ELECTRIC,
+	FIGHTER,
+	FIRE,
+	FLYING,
+	INSECT,
+	NORMAL,
+	PLANT,
+	POISON,
+	PSYCHIC,
+	WATER
+}
