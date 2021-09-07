@@ -6,10 +6,12 @@ import types.Type;
 
 
 public class Pokemon {
+	
 	protected String _name;
 	protected Integer _level;
 	private Integer _initialLevel;
 	private ArrayList<Type> _types;
+	private ArrayList<String> _abilities;
 	private ArrayList<Pokemon> _evolutions;
 
 
@@ -19,26 +21,35 @@ public class Pokemon {
 		_initialLevel = level;
 		_types = new ArrayList<Type>();
 		_types.add(t);
+		_abilities = new ArrayList<abilities>();
+		_evolutions = new ArrayList<String>();
 	}
+
 
 	public Pokemon(String name, Integer level, ArrayList<Type> types){
 		_name = name;
 		_level = level;
 		_initialLevel = _level;
 		_types = new ArrayList<Type>(types);
+		_abilities = new ArrayList<abilities>();
+		_evolutions = new ArrayList<String>();
 	}
+
 
 	public Pokemon(Pokemon p){
 		_name = p._name;
 		_level = p._level;
 		_initialLevel = p._level;
 		_types = new ArrayList<Type>(p._types);
-		_evolutions = new ArrayList<Pokemon>(p._evolutions);
+		_abilities = new ArrayList<abilities>(p._abilities);
+		_evolutions = new ArrayList<String>(p._evolutions);
 	}
+
 
 	public String name(){
 		return _name;
 	}
+
 
 	private void evolve(){
 		try{
@@ -48,6 +59,7 @@ public class Pokemon {
 		}
 	}
 
+
 	public void levelUp(Integer lv){
 		_level += lv;
 //		if (_level == /*nivel minimo del siguiente*/)
@@ -56,16 +68,43 @@ public class Pokemon {
 //			System.out.println(prevName + "has evolve to " + _name);
 	}
 	
+
 	public boolean addType(Type t){
 		return _types.add(t);
 	}
+
+	public boolean removeType(Type t){
+		try{
+			_types.remove(t);
+		}catch(NullPointerException e){
+			return false;
+		}
+		return true;
+	}
+
 
 	public void changeName(String name){
 		_name = name;
 	}
 
-	public void addEvolution(Pokemon e){
-		_evolutions.add(e);
+
+	public void addEvolution(Pokemon p){
+		_evolutions.add(p);
+	}
+
+	public void showAbilities(){
+		System.out.println(_name + "'s abilities: | ");
+		for (String a : _abilities)
+			System.out.println(a + " | ");
+	}
+
+	public void showEvolutions(){
+		if(!_evolutions.isEmpty()){	
+			System.out.println(_name + "'s Evolutions: ");
+			for (Pokemon p : _evolutions)
+				p.showData();
+		}else
+			System.out.println("There are not evolutions for " + _name);
 	}
 
 	public void showData(){
@@ -74,15 +113,12 @@ public class Pokemon {
 		System.out.println("Level: " + _level + "\n");
 	}
 
-	private void printTypes(){
-		System.out.print("Type(s): | ");
-		Integer i = 0;
-		while (i < _types.size()){
-			System.out.print(_types.get(i).name() + " | ");
-			i++;
+		private void printTypes(){
+			System.out.print("Type(s): | ");
+			for(Type t : _types)
+				System.out.print(t.name() + " | ");
+			System.out.println();
 		}
-		System.out.println();
-	}
 
 }	
 

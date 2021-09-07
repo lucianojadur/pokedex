@@ -16,6 +16,7 @@ public class Pokedex{
 		pokemons = new HashMap<String,Pokemon>();
 	}
 
+
 	public static Pokedex getInstance(){
 		if (Pokedex.singleton == null)
 			singleton = new Pokedex();
@@ -23,13 +24,16 @@ public class Pokedex{
 		return singleton;
 	}
 	
+
 	public Integer amountOfPokemons(){
 		return pokemons.size();
 	}
 
+
 	public void add(Pokemon p){
-		pokemons.putIfAbsent(p.name().toLowerCase().toLowerCase(), p);
+		pokemons.putIfAbsent(p.name().toLowerCase(), p);
 	}
+
 
 	public boolean addTypeTo(String name, Type t){
 		try{
@@ -40,6 +44,17 @@ public class Pokedex{
 		return true;
 	}
 
+
+	public boolean removeTypeFrom(String name, Type t){
+		try{
+			pokemons.get(name.toLowerCase()).removeType(t);
+		}catch(NullPointerException e){
+			return false;
+		}
+		return true;
+	}
+
+
 	public boolean editNameOf(String name, String newName){
 		try{
 			pokemons.get(name).changeName(newName);
@@ -48,6 +63,7 @@ public class Pokedex{
 		}
 		return true;
 	}
+
 
 	public boolean addEvolutionTo(String name, Pokemon ev){
 		try{
@@ -59,8 +75,27 @@ public class Pokedex{
 	}
 
 
+	public void showAbilitiesOf(String pokemonName){
+		try{
+			pokemons.get(pokemonName.toLowerCase()).showAbilities();
+		}catch (NullPointerException e){
+			System.out.println("The searched pokemon is not registered on the database.");
+		}
+	}
+
+
+	public void showEvolutionsOf(String pokemonName){
+		try{
+			pokemons.get(pokemonName.toLowerCase()).showEvolutions();
+		}catch (NullPointerException e){
+			System.out.println("The searched pokemon is not registered on the database.");
+		}
+	}
+
+
 	public void showPokemons(){
 		for(Pokemon p : pokemons.values())
 			p.showData();
 	}
+
 }

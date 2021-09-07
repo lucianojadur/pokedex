@@ -34,7 +34,24 @@ public class Parser {
 			this.user = reader.readLine();
 		
 			while ((line = reader.readLine()) != null) {
-				String [] pokemons = line.split(delim);
+				String [] pokemonData = line.split(delim);
+				//
+				//List of Types
+				int typesSize = pokemonData[2];
+				ArrayList<Type> types = new ArrayList(typesSize); //initial size
+				for (int i = 0; i < typesSize; i++)
+					types.add(pokemonData[3+i]);
+				//
+				//List of abilities
+				int abilitiesSize = pokemonData[2 + typesSize + 1];
+				//
+				//List of evolutions
+				int evSize = 2 + tipesSize + abilitiesSize + 2;
+				ArrayList<Pokemon> evolutions = new ArrayList(pokemons[evSize]);
+				for (int i = 0; i < ; i++)
+					evolutions.add(pokemons[evSize+i]);
+
+				Pokemon p = new Pokemon(pokemons[0], pokemons[1], types, );
 				
 			}
 
