@@ -88,8 +88,8 @@ public class Pokemon {
 	}
 
 
-	public void addEvolution(Pokemon p){
-		_evolutions.add(p);
+	public void addEvolution(Stirng name){
+		_evolutions.add(name);
 	}
 
 	public void showAbilities(){
@@ -101,8 +101,8 @@ public class Pokemon {
 	public void showEvolutions(){
 		if(!_evolutions.isEmpty()){	
 			System.out.println(_name + "'s Evolutions: ");
-			for (Pokemon p : _evolutions)
-				p.showData();
+			for (String p : _evolutions)
+				System.out.println(p + " | ");
 		}else
 			System.out.println("There are not evolutions for " + _name);
 	}
