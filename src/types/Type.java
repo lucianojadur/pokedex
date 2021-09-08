@@ -8,10 +8,13 @@ public enum Type {
 	FIGHTER,
 	FIRE,
 	FLYING,
+	GHOST,
+	ICE,
 	INSECT,
 	NORMAL,
 	PLANT,
 	POISON,
 	PSYCHIC,
+	STEEL,
 	WATER
 }

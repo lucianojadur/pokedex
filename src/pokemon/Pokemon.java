@@ -1,5 +1,6 @@
 package pokemon;
 
+import java.util.HashSet;
 import java.util.ArrayList;
 import java.io.*;
 import types.Type;
@@ -10,29 +11,54 @@ public class Pokemon {
 	protected String _name;
 	protected Integer _level;
 	private Integer _initialLevel;
-	private ArrayList<Type> _types;
-	private ArrayList<String> _abilities;
-	private ArrayList<Pokemon> _evolutions;
+	private HashSet<Type> _types;
+	private HashSet<String> _abilities;
+	private ArrayList<String> _evolutions;
+
+	public Pokemon(String name, Integer level){
+		_name = name;
+		_level = level;
+		_initialLevel = level;
+		_types = new HashSet<Type>();
+		_abilities = new HashSet<String>();
+		_evolutions = new ArrayList<String>();
+	}
+
 
 
 	public Pokemon(String name, Integer level, Type t){
 		_name = name;
 		_level = level;
 		_initialLevel = level;
-		_types = new ArrayList<Type>();
+		_types = new HashSet<Type>();
 		_types.add(t);
-		_abilities = new ArrayList<abilities>();
+		_abilities = new HashSet<String>();
 		_evolutions = new ArrayList<String>();
 	}
 
 
-	public Pokemon(String name, Integer level, ArrayList<Type> types){
+	public Pokemon(String name, Integer level, HashSet<Type> types){
 		_name = name;
 		_level = level;
 		_initialLevel = _level;
-		_types = new ArrayList<Type>(types);
-		_abilities = new ArrayList<abilities>();
+		_types = new HashSet<Type>(types);
+		_abilities = new HashSet<String>();
 		_evolutions = new ArrayList<String>();
+	}
+
+	public Pokemon(
+		String name, 
+		Integer level, 
+		HashSet<Type> types, 
+		HashSet<String> abilities, 
+		ArrayList<String> evolutions
+	){
+		_name = name;
+		_level = level;
+		_initialLevel = _level;
+		_types = new HashSet<Type>(types);
+		_abilities = new HashSet<String>(abilities);
+		_evolutions = new ArrayList<String>(evolutions);
 	}
 
 
@@ -40,8 +66,8 @@ public class Pokemon {
 		_name = p._name;
 		_level = p._level;
 		_initialLevel = p._level;
-		_types = new ArrayList<Type>(p._types);
-		_abilities = new ArrayList<abilities>(p._abilities);
+		_types = new HashSet<Type>(p._types);
+		_abilities = new HashSet<String>(p._abilities);
 		_evolutions = new ArrayList<String>(p._evolutions);
 	}
 
@@ -51,21 +77,8 @@ public class Pokemon {
 	}
 
 
-	private void evolve(){
-		try{
-			//evolucionar / State
-		}catch(ArrayIndexOutOfBoundsException e){
-			//enviar error
-		}
-	}
-
-
 	public void levelUp(Integer lv){
 		_level += lv;
-//		if (_level == /*nivel minimo del siguiente*/)
-//			String prevName = _name;
-//			evolve();
-//			System.out.println(prevName + "has evolve to " + _name);
 	}
 	
 
@@ -88,21 +101,23 @@ public class Pokemon {
 	}
 
 
-	public void addEvolution(Stirng name){
+	public void addEvolution(String name){
 		_evolutions.add(name);
 	}
 
 	public void showAbilities(){
-		System.out.println(_name + "'s abilities: | ");
+		System.out.print(_name + "'s abilities: | ");
 		for (String a : _abilities)
-			System.out.println(a + " | ");
+			System.out.print(a + " | ");
+		System.out.println();
 	}
 
 	public void showEvolutions(){
 		if(!_evolutions.isEmpty()){	
-			System.out.println(_name + "'s Evolutions: ");
+			System.out.print(_name + "'s Evolutions: ");
 			for (String p : _evolutions)
-				System.out.println(p + " | ");
+				System.out.print(p + " | ");
+			System.out.println();
 		}else
 			System.out.println("There are not evolutions for " + _name);
 	}

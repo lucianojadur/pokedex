@@ -9,17 +9,18 @@ import types.Type;
 public class Pokedex{
 	
 	public static Pokedex singleton;
+	private String dataSource;
 	private HashMap<String,Pokemon> pokemons;
 
-
-	private Pokedex(){
-		pokemons = new HashMap<String,Pokemon>();
+	private Pokedex(HashMap<String,Pokemon> data, String source){
+		pokemons = data;
+		dataSource = source;
 	}
 
 
-	public static Pokedex getInstance(){
+	public static Pokedex getInstance(HashMap<String,Pokemon> data, String source){
 		if (Pokedex.singleton == null)
-			singleton = new Pokedex();
+			singleton = new Pokedex(data, source);
 		
 		return singleton;
 	}
@@ -65,9 +66,13 @@ public class Pokedex{
 	}
 
 
-	public boolean addEvolutionTo(String name, Pokemon ev){
+	public boolean addEvolutionTo(String name, String ev, Integer evLevel){
 		try{
 			pokemons.get(name).addEvolution(ev);
+			if (!pokemons.containsKey(name)){
+				Pokemon p = new Pokemon(ev, evLevel);
+				pokemons.putIfAbsent(ev, p);
+			}
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -96,6 +101,10 @@ public class Pokedex{
 	public void showPokemons(){
 		for(Pokemon p : pokemons.values())
 			p.showData();
+	}
+
+	public HashMap<String,Pokemon> getDB(){
+		return pokemons;
 	}
 
 }
