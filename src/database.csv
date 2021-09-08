@@ -1,16 +1,16 @@
 default_user
-Bulbasaur,1,2,PLANT,POISON,1,Overgrow,Ivisaur,Venasaur
-Ivysaur,16,2,PLANT,POISON,1,Overgrow,Venasaur
-Venasaur,32,2,PLANT,POISON,1,Overgrow
-Charmander,1,1,FIRE,1,Blaze,Charmeleon,Charizard
-Charmeleon,16,1,FIRE,1,Blaze,Charizard
-Charizard,36,1,FIRE,1,Blaze,
-Squirtle,1,1,WATER,1,Torrent,Wartorle,Blastoise
-Wartortle,16,1,WATER,1,Torrent,Blastoise
-Blastoise,36,1,WATER,1,Torrent,
-Caterpie,1,1,INSECT,1,Dust Shield,Metapod,Butterfree
-Metapod,7,1,INSECT,1,Shed Skin,Butterfree
-Butterfree,10,2,INSECT,FLYING,1,Compound Eyes
-Pikachu,1,1,ELECTRIC,1,Static,Raichu
-Raichu,1,1,ELECTRIC,1,Static
-Pichu,1,1,ELECTRIC,1,Static,Pikachu,Raichu
+Bulbasaur,1,1,2,PLANT,POISON,1,Overgrow,Ivisaur,Venasaur
+Ivysaur,16,16,2,PLANT,POISON,1,Overgrow,Venasaur
+Venasaur,32,32,2,PLANT,POISON,1,Overgrow
+Charmander,1,1,1,FIRE,1,Blaze,Charmeleon,Charizard
+Charmeleon,16,16,1,FIRE,1,Blaze,Charizard
+Charizard,36,36,1,FIRE,1,Blaze,
+Squirtle,1,1,1,WATER,1,Torrent,Wartorle,Blastoise
+Wartortle,16,16,1,WATER,1,Torrent,Blastoise
+Blastoise,36,36,1,WATER,1,Torrent,
+Caterpie,1,1,1,INSECT,1,Dust Shield,Metapod,Butterfree
+Metapod,7,7,1,INSECT,1,Shed Skin,Butterfree
+Butterfree,10,10,2,INSECT,FLYING,1,Compound Eyes
+Pikachu,1,,1,ELECTRIC,1,Static,Raichu
+Raichu,1,,1,ELECTRIC,1,Static
+Pichu,1,1,1,ELECTRIC,1,Static,Pikachu,Raichu

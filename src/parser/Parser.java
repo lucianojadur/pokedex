@@ -9,10 +9,18 @@ import types.Type;
 import pokemon.Pokemon;
 import pokedex.Pokedex;
 
-public class Parser extends FileProcessor{
+
+
+public class Parser{
 
 	static private Parser instance;
+	private String _source;
+	private String _user;
 	private HashMap<String,Pokemon> _database;
+
+	private final String DELIM = ",";
+	private final int TYPES_SIZE_INDEX = 3;
+	private final int FIRST_TYPE_INDEX = 4;
 
 
 	private Parser(String path){
@@ -42,43 +50,21 @@ public class Parser extends FileProcessor{
 	public boolean parse(){
 		BufferedReader reader = null;
 		String line = "";
-		String delim = ",";
-
 
 		try{
 			reader = new BufferedReader(new FileReader(this._source));
 			this._user = reader.readLine();
 		
 			while ((line = reader.readLine()) != null) {
-				HashSet<String> abilities = new HashSet<String>();
-				ArrayList<String> evolutions = new ArrayList<String>();
-				
-				String [] pokemonData = line.split(delim);
-				int j = 2;
-				//
-				//List of Types
-				int typesSize = Integer.parseInt(pokemonData[2]);
-				HashSet<Type> types = new HashSet<Type>(typesSize); //initial size
-				for (int i = 0; i < typesSize; i++){
-					j++;
-					types.add(Type.valueOf(pokemonData[j]));
-				}j++;
-				//
-				//List of abilities
-				int abilitiesSize = Integer.parseInt(pokemonData[2 + typesSize + 1]);
-				for (int i = 0; i < abilitiesSize; i++){
-					j++;
-					abilities.add(pokemonData[j]);
-				}
-				//
-				//List of evolutions
-				for (int i = j+1;  i < pokemonData.length; i++){
-					evolutions.add(pokemonData[i]);
-				}
+				String [] pokemonData = line.split(DELIM);
 
+				HashSet<Type> types = parseTypes(pokemonData);
+				HashSet<String> abilities = parseAbilities(pokemonData, types.size() + 4);
+				ArrayList<String> evolutions = parseEvolutions(pokemonData, types.size()+abilities.size()+5);
+			
 				Pokemon p = new Pokemon(
 					pokemonData[0], 
-					Integer.parseInt(pokemonData[1]),
+					parseLevels(pokemonData[1], pokemonData[2]),
 					types,
 					abilities,
 					evolutions);
@@ -93,4 +79,44 @@ public class Parser extends FileProcessor{
 		}
 	}
 
+
+	private Integer[] parseLevels(String lvFound, String lvMin){
+		Integer[] lvs = new Integer[2];
+		try{
+			lvs[0] = Integer.parseInt(lvFound);
+			lvs[1] = Integer.parseInt(lvMin);
+		}catch(Exception e){
+			lvs[0] = lvs[1] = 0;
+		}
+		return lvs;
+	}
+
+
+	private HashSet<Type> parseTypes(String[] data){
+		int typesSize = Integer.parseInt(data[TYPES_SIZE_INDEX]);
+		HashSet<Type> types = new HashSet<Type>();
+		
+		for (int i = FIRST_TYPE_INDEX; i < FIRST_TYPE_INDEX+typesSize; i++)
+			types.add(Type.valueOf(data[i]));
+		return types;
+	}
+
+
+	private HashSet<String> parseAbilities(String[] data, Integer from){
+		int abilitiesSize = Integer.parseInt(data[from]);
+		HashSet<String> abilities = new HashSet<String>();
+		for (int i = from; i < from + abilitiesSize; i++)
+			abilities.add(data[i]);
+		return abilities;
+	}
+
+
+	private ArrayList<String> parseEvolutions(String[] data, Integer from){
+		ArrayList<String> evolutions = new ArrayList<String>();
+		for (int i = from;  i < data.length; i++)
+			evolutions.add(data[i]);
+		return evolutions;
+	}
+
 }
+
