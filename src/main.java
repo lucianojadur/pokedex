@@ -1,23 +1,20 @@
-//package pokemon;
+
 import pokemon.Pokemon;
 import pokedex.Pokedex;
 import types.Type;
-import parser.Parser;
+import iofiles.Parser;
+import ui.UI;
 
 public class main{
 	public static void main(String[] argv){
+		Pokedex p = UI.initialize(argv);
 
-		Parser parser = Parser.getDataFrom(argv[0]);
-	/*	Integer[] pikachuLvls = {4,1};
-		Pokemon pikachu = new Pokemon("Pikachu", pikachuLvls, Type.ELECTRIC);
-*/
-		Pokedex p = Pokedex.getInstance(parser.getDB(), parser.userName());
-		
-		
-		System.out.println("\nAdding to the database...\n");
+	//	UI ui = new UI(p);
+		UI.printTitle();
 
-//		p.showPokemons();
-		p.showEvolutionsOf("pichu");
-		p.showEvolutionsOf("charmander");
+		boolean option = true;			
+		while(option){
+			option = UI.mainMenu();
+		}	
 	}
 }

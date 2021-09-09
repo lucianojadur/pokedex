@@ -3,24 +3,26 @@ package pokedex;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collection;
 import pokemon.Pokemon;
 import types.Type;
-import hierarchy.Hierarchy;
-import hierarchy.Evolution;
-import hierarchy.Actual;
+import hierarchy.*;
+import iofiles.FileUpdater;
 
 
 public class Pokedex{
 	
 	public static Pokedex singleton;
-	private String dataSource;
+	private String user;
 	private Hierarchy instance;
 	private HashMap<String,Pokemon> pokemons;
 
 	private Pokedex(HashMap<String,Pokemon> data, String source){
 		pokemons = data;
-		dataSource = source;
+		user = source;
 		instance = null;
 	}
 
@@ -38,14 +40,40 @@ public class Pokedex{
 	}
 
 
-	public void add(Pokemon p){
-		pokemons.putIfAbsent(p.name().toLowerCase(), p);
+	public Pokemon get(String name){
+		try{
+			return pokemons.get(name);
+		}catch(NullPointerException e){
+			return null;
+		}
 	}
 
 
-	public boolean addTypeTo(String name, Type t){
+	public void upLevelTo(String name, Integer up){
 		try{
-			pokemons.get(name.toLowerCase()).addType(t);
+			pokemons.get(name).levelUp(up);
+		}catch(NullPointerException e){
+			System.out.println("That pokemon is not registered in the database.");
+		}
+	}
+
+	public boolean add(String name, Integer[] levels, String type){
+		if (!pokemons.containsKey(name)){
+			Pokemon p = new Pokemon(name, levels, Type.valueOf(type));
+			pokemons.putIfAbsent(name, p);
+
+			FileUpdater log = new FileUpdater(user, pokemons.values());
+			if(log.update())
+				System.out.println("Database file updated!");
+			return true;
+		}
+		return false;
+	}
+
+
+	public boolean addTypeTo(String name, String t){
+		try{
+			pokemons.get(name.toLowerCase()).addType(Type.valueOf(t));
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -53,9 +81,9 @@ public class Pokedex{
 	}
 
 
-	public boolean removeTypeFrom(String name, Type t){
+	public boolean removeTypeFrom(String name, String t){
 		try{
-			pokemons.get(name.toLowerCase()).removeType(t);
+			pokemons.get(name.toLowerCase()).removeType(Type.valueOf(t));
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -65,7 +93,27 @@ public class Pokedex{
 
 	public boolean editNameOf(String name, String newName){
 		try{
-			pokemons.get(name).changeName(newName);
+			return flipKeys(name, newName);
+		}catch(NullPointerException e){
+			return false;
+		}
+	}
+
+		private boolean flipKeys(String oldName, String newName){
+			if (pokemons.containsKey(newName))
+				return false;
+			pokemons.get(oldName).changeName(newName);
+			pokemons.putIfAbsent(newName, pokemons.get(oldName));
+			pokemons.remove(oldName);
+			return true;
+		}
+
+
+
+	public boolean addEvolutionTo(String name, String ev){
+		try{
+			if(pokemons.get(ev) != null)
+				pokemons.get(name).addEvolution(ev);
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -73,13 +121,11 @@ public class Pokedex{
 	}
 
 
-	public boolean addEvolutionTo(String name, String ev, Integer[] evLevels){
+	public boolean showDataOf(String pokemonName){
+		instance = new Actual();
+		System.out.println();
 		try{
-			pokemons.get(name).addEvolution(ev);
-			if (!pokemons.containsKey(name)){
-				Pokemon p = new Pokemon(ev, evLevels);
-				pokemons.putIfAbsent(ev, p);
-			}
+			instance.showDataOf(pokemons.get(pokemonName));
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -87,35 +133,64 @@ public class Pokedex{
 	}
 
 
-	public void showAbilitiesOf(String pokemonName){
+	public boolean showAbilitiesOf(String pokemonName){
 		try{
-			System.out.println(pokemonName + "'s abilities:  ");
-			HashSet<String> abilities = pokemons.get(pokemonName.toLowerCase()).abilities();
-			for (String ability : abilities)
-				System.out.print(ability + " ");
+			Pokemon p = pokemons.get(pokemonName.toLowerCase());
+
+			System.out.println("\n" + p.name() + "'s abilities:  ");
+			for (String a : p.abilities())
+				System.out.print(a + " ");
+			
 			System.out.println();
+			return true;
 		}
 		catch (NullPointerException e){
-			System.out.println(pokemonName + " is not registered on the database.");
+			return false;
 		}
 	}
 
 
-	public void showEvolutionsOf(String pokemonName){
+	public boolean showEvolutionsOf(String pokemonName){
 		try{
 			instance = new Evolution();
-			System.out.println(pokemonName + "'s evolutions: \n");
-			ArrayList<String> evolutions = pokemons.get(pokemonName.toLowerCase()).evolutions();
+			Pokemon p = pokemons.get(pokemonName.toLowerCase());
 
+			System.out.println("\n" + p.name() + "'s evolutions: \n");
 			try{
-				for (String name : evolutions)
-				instance.showDataOf(pokemons.get(name.toLowerCase()));
+				if(p.evolutions().isEmpty())
+					System.out.println("It has no evolutions so far...");
+
+				for (String name : p.evolutions())
+					instance.showDataOf(pokemons.get(name.toLowerCase()));
 			}catch(NullPointerException e){
-				System.out.println(pokemonName + " has not registered evolutions.");
+				return false;
 			}
 		}
 		catch (NullPointerException e){
-			System.out.println(pokemonName + " is not registered on the database.");
+			return false;
+		}
+		return true;
+	}
+
+
+
+	public HashSet<String> getAbilitiesOf(String pokemonName){
+		try{
+			Pokemon p = pokemons.get(pokemonName.toLowerCase());
+			return p.abilities();
+		}
+		catch (NullPointerException e){
+			return null;
+		}
+	}
+
+
+	public ArrayList<String> getEvolutionsOf(String pokemonName){
+		try{
+			Pokemon p = pokemons.get(pokemonName.toLowerCase());
+			return p.evolutions();
+		}catch(NullPointerException e){
+			return null;
 		}
 	}
 
@@ -126,9 +201,27 @@ public class Pokedex{
 			instance.showDataOf(p);
 	}
 
-
-	public Set<String> pokemons(){
-		return pokemons.keySet();
+	public String user(){
+		return user;
 	}
 
+
+	public String[] names(){
+		return pokemons.keySet().toArray(new String[pokemons.size()]);
+	}
+
+	public String[] sortedNames(){
+		String[] names = this.names();
+		Arrays.sort(names);
+		return names;
+	}
+
+
+	public boolean contains(String pokemonName){
+		return pokemons.containsKey(pokemonName);
+	}
+
+	public Collection<Pokemon> getPokemons(){
+		return pokemons.values();
+	}
 }
