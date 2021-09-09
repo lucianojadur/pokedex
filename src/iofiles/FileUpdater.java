@@ -10,7 +10,7 @@ import pokemon.Pokemon;
 
 public class FileUpdater {
 
-	private String _userName;
+	private String _fileName;
 	private Collection<Pokemon> database;
 
 	public FileUpdater(String path, Collection<Pokemon> db){
