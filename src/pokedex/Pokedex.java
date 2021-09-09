@@ -26,7 +26,10 @@ public class Pokedex{
 		instance = null;
 	}
 
-
+	//
+	//As it might exist just one Pokedex at a time, it just creates
+	//only one instance of Pokedex and is  used by the same user until
+	//the program stops or ends.
 	public static Pokedex getInstance(HashMap<String,Pokemon> data, String source){
 		if (Pokedex.singleton == null)
 			singleton = new Pokedex(data, source);
@@ -34,12 +37,15 @@ public class Pokedex{
 		return singleton;
 	}
 	
-
+	//
+	//Returns the amount of pokemons saved in the virtual storage
 	public Integer amountOfPokemons(){
 		return pokemons.size();
 	}
 
-
+	//
+	//given a pokemon's name, it returns a container with all the data of thar pokemon.
+	//If a not registered pokemon or entity is entered, it returns a null reference.
 	public Pokemon get(String name){
 		try{
 			return pokemons.get(name);
@@ -48,7 +54,9 @@ public class Pokedex{
 		}
 	}
 
-
+	//
+	//increases the current level of a given pokemon (called by <name>)
+	//in an amout of <up>
 	public void upLevelTo(String name, Integer up){
 		try{
 			pokemons.get(name).levelUp(up);
@@ -57,6 +65,10 @@ public class Pokedex{
 		}
 	}
 
+
+	//
+	//Given a name, a pair of integer numbers and a string with a type of nature in its name,
+	//it creates, saves and writes in the source data file a new pokemon with that information.
 	public boolean add(String name, Integer[] levels, String type){
 		if (!pokemons.containsKey(name)){
 			Pokemon p = new Pokemon(name, levels, Type.valueOf(type));
@@ -70,7 +82,9 @@ public class Pokedex{
 		return false;
 	}
 
-
+	//
+	//Given the name of a pokemon, it adds to him/her a new type of nature
+	//given by a string with its name.
 	public boolean addTypeTo(String name, String t){
 		try{
 			pokemons.get(name.toLowerCase()).addType(Type.valueOf(t));
@@ -80,7 +94,9 @@ public class Pokedex{
 		return true;
 	}
 
-
+	//
+	//Given the name of a pokemon, it removes from him/her a the type of nature
+	//given by a string with its name.
 	public boolean removeTypeFrom(String name, String t){
 		try{
 			pokemons.get(name.toLowerCase()).removeType(Type.valueOf(t));
@@ -90,7 +106,9 @@ public class Pokedex{
 		return true;
 	}
 
-
+	//
+	//It modifies the name of a certain pokemon. As the name works as an identifier,
+	//future requests referred to that pokemon must be asked with its new name.
 	public boolean editNameOf(String name, String newName){
 		try{
 			return flipKeys(name, newName);
@@ -98,7 +116,9 @@ public class Pokedex{
 			return false;
 		}
 	}
-
+		//
+		//It swaps a pokemon from its current name to its new name.
+		//current name (after this, "former name") will map a reference to null.
 		private boolean flipKeys(String oldName, String newName){
 			if (pokemons.containsKey(newName))
 				return false;
@@ -109,7 +129,9 @@ public class Pokedex{
 		}
 
 
-
+	//
+	//It takes the name of two pokemons (expected to be both of them previously registered)
+	//and writes the second one down as an evolution of the first one.
 	public boolean addEvolutionTo(String name, String ev){
 		try{
 			if(pokemons.get(ev) != null)
@@ -120,7 +142,8 @@ public class Pokedex{
 		return true;
 	}
 
-
+	//
+	//It prints in an appropiate format the basic information of a pokemon searched by its name
 	public boolean showDataOf(String pokemonName){
 		instance = new Actual();
 		System.out.println();
@@ -132,7 +155,8 @@ public class Pokedex{
 		return true;
 	}
 
-
+	//
+	//It prints the abilities registered from a certain pokemon searched by its name.
 	public boolean showAbilitiesOf(String pokemonName){
 		try{
 			Pokemon p = pokemons.get(pokemonName.toLowerCase());
@@ -149,7 +173,8 @@ public class Pokedex{
 		}
 	}
 
-
+	//
+	//It prints the evolutions registered from a certain pokemon searched by its name.
 	public boolean showEvolutionsOf(String pokemonName){
 		try{
 			instance = new Evolution();
@@ -173,7 +198,8 @@ public class Pokedex{
 	}
 
 
-
+	//
+	//It returns a set of the strings with the names of the abilities of a pokemon searched by its name.
 	public HashSet<String> getAbilitiesOf(String pokemonName){
 		try{
 			Pokemon p = pokemons.get(pokemonName.toLowerCase());
@@ -184,7 +210,8 @@ public class Pokedex{
 		}
 	}
 
-
+	//
+	//It returns a set of the strings with the names of the evolutions of a pokemon searched by its name.	
 	public ArrayList<String> getEvolutionsOf(String pokemonName){
 		try{
 			Pokemon p = pokemons.get(pokemonName.toLowerCase());
@@ -194,18 +221,22 @@ public class Pokedex{
 		}
 	}
 
-
+	//
+	//It prints the whole list of pokemons registered so far and shows, for each one, their basic informations.
 	public void showPokemons(){
 		instance = new Actual();
 		for(Pokemon p : pokemons.values())
 			instance.showDataOf(p);
 	}
 
+	//
+	//It returns the user whom the current pokedex data belongs to.
 	public String user(){
 		return user;
 	}
 
-
+	//
+	//It returns an array of the names of the pokemons storaged.
 	public String[] names(){
 		return pokemons.keySet().toArray(new String[pokemons.size()]);
 	}
@@ -216,7 +247,9 @@ public class Pokedex{
 		return names;
 	}
 
-
+	//
+	//Given a string with the name of a pokemon, it returns true if the pokemon is registered on the database
+	//and it returns false otherwise. 
 	public boolean contains(String pokemonName){
 		return pokemons.containsKey(pokemonName);
 	}

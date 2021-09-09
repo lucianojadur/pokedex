@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class OptionSelector implements EscapeSequences{
 	
+	//
+	//It asks the user for a valid input number in order to choose an option
+	//given by the database menus.	
 	public static Integer askInputValue(int max){		
 		Scanner scanner = new Scanner(System.in);
 		try{

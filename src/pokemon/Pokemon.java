@@ -6,7 +6,12 @@ import java.util.List;
 import java.io.*;
 import types.Type;
 
-
+//
+//
+//As every instance of a Pokemon is just a container of the information about
+//the referred pokemon, it remains mostly as an anemic class.
+//Most of the methods in here are getters and setters useful to manage and update the information
+//storaged in the database.
 public class Pokemon {
 	
 	protected String _name;
@@ -173,6 +178,8 @@ public class Pokemon {
 		return _previous;
 	}
 
+	//
+	//It returns a parsed-to-string list of every value in the register of the pokemon
 	public List<String> getValues(){
 		try{
 			List<String> values = new ArrayList<String>();

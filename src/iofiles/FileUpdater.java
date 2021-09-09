@@ -13,18 +13,22 @@ public class FileUpdater {
 	private String _userName;
 	private Collection<Pokemon> database;
 
-	public FileUpdater(String userName, Collection<Pokemon> db){
-		_userName = userName;
+	public FileUpdater(String path, Collection<Pokemon> db){
+		_fileName = path;
 		database = db;
 	}
 
-
+	//
+	//Rewrites (in case of existing previously, otherwise it just creates it) the file
+	//with all the database information statically storaged in it.
+	//
+	//As this method is called, the database storaged in the computer remains updated;
 	public boolean update(){
 		BufferedWriter file = null;
 
 		try{
-			file = new BufferedWriter(new FileWriter(this._userName));
-			
+			file = new BufferedWriter(new FileWriter(this._fileName));
+			file.write(_fileName);
 			for (Pokemon pokemon : database){
 				List<String> values = pokemon.getValues();
 				String line = String.join(",",values);

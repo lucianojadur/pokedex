@@ -21,6 +21,9 @@ public class UI
 	private static final String titlePath = "title.txt";
 
 
+	//
+	//It prints the title in a fancy format. 
+	//Not tested on not-Unix-like systems, so it just prints a boring presentation in Windows.
 	public static void printTitle(){
 		System.out.println();
 		if (System.getProperty("os.name").toLowerCase().equals("linux")){
@@ -38,7 +41,8 @@ public class UI
 			System.out.println("*** Welcome to Pokedex ***");
 	}
 
-
+	//
+	//Prints the main menu and asks the user for an option to choose.
 	public static boolean mainMenu(){
 		printMainMenu();
 		String name = "";
@@ -51,7 +55,10 @@ public class UI
 		return mainMenu.executeQuery(name, pokedex);
 	}
 
-
+	//
+	//Set up the start of the program.
+	//It starts with default values in case of not addressing a source file
+	//as an argument when executing the program.
 	public static Pokedex initialize(String[] argv){
 		Parser parser;
 		if (argv.length != 1){
@@ -66,7 +73,8 @@ public class UI
 		return pokedex;
 	}
 
-
+		//
+		//Prints the visual interface for main menu
 		private static void printMainMenu(){
 			System.out.println("Choose any option: \n");
 			System.out.println("1) See all pokemons");
