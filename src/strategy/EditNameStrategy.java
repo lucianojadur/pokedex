@@ -14,6 +14,6 @@ public class EditNameStrategy implements Strategy{
 	private static String askNewName(){
 		System.out.print(_CYAN_ + "Enter your pokemon's new name: " + _RESET_);
 		Scanner scanner = new Scanner(System.in);
-		return scanner.nextLine().toLowerCase();
+		return scanner.nextLine();
 	}
 }

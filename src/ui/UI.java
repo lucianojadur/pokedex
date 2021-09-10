@@ -95,7 +95,7 @@ public class UI
 		private static String askPokemonName(){
 			System.out.print("\nWrite a name: ");
 			Scanner scanner = new Scanner(System.in);
-			return scanner.nextLine().toLowerCase();
+			return scanner.nextLine();
 		}
 
 }

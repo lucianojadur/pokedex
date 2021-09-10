@@ -9,7 +9,6 @@ public class main{
 	public static void main(String[] argv){
 		Pokedex p = UI.initialize(argv);
 
-	//	UI ui = new UI(p);
 		UI.printTitle();
 
 		boolean option = true;			

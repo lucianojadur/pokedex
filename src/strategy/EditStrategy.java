@@ -22,7 +22,7 @@ public class EditStrategy
 
 
 	private static boolean edit(String name, Pokedex pokedex){
-		if(pokedex.get(name) == null)
+		if(pokedex.get(name.toLowerCase()) == null)
 			return false;
 
 		printEditionMenu();

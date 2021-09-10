@@ -10,7 +10,7 @@ public class ShowDataStrategy implements Strategy, ErrorMessages{
 
 
 	public boolean executeQuery(String name, Pokedex pokedex){
-		if (!pokedex.showDataOf(name))
+		if (!pokedex.showDataOf(name.toLowerCase()))
 			printMsgError();
 		return true;
 	}

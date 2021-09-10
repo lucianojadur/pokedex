@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import java.util.ArrayList;
+import java.util.HashMap;
 import types.Type;
 import pokemon.Pokemon;
 import parser.Parser;
@@ -83,9 +85,9 @@ public class PokedexTest{
 
 	@Test
 	public void APokemonInformationCanBeUpdated(){
-		Integer lv = p.get(bulbasaur).level();
+		Integer lv = p.get("bulbasaur").level();
 		p.upLevelTo("bulbasaur", 5);
-		assertEquals(p.get(bulbasaur).level(), lv+5);
+		assertEquals(p.get("bulbasaur").level(), lv+5);
 
 		p.editNameOf("squirtle", "squeral");
 		p.assertEquals(p.contains("squirtle"), false);

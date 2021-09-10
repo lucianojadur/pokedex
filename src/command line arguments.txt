@@ -1,0 +1,17 @@
+[Compile]:
+
+pokedex/pokedex/src~$ javac main.java
+
+
+
+[Execute]:
+
+~$ java main	(default data file at initialization)
+
+~$ java main <user_name.csv> (if there is) 
+
+
+the csv file must be written in the correct way
+
+username 		<--1st line
+Pokemon_name,lv_found,min_lv_possibe,ammount_of_types,(types),amount_of_abilities,(abilities)...,amount_of_evols,(evols)...,amount_of_pre-evols,(pre-evolutions)...

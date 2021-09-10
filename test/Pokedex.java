@@ -1,4 +1,3 @@
-package pokedex;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,10 +6,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
-import pokemon.Pokemon;
-import types.Type;
-import hierarchy.*;
-import iofiles.FileUpdater;
+//import Pokemon;
+//import Type;
+//ipmort Parser;
+
 
 
 public class Pokedex{
@@ -138,7 +137,7 @@ public class Pokedex{
 	public boolean addEvolutionTo(String name, String ev){
 		try{
 			if(pokemons.get(ev) != null)
-				pokemons.get(name.toLowerCase()).addEvolution(ev);
+				pokemons.get(name).addEvolution(ev);
 		}catch(NullPointerException e){
 			return false;
 		}
@@ -151,7 +150,7 @@ public class Pokedex{
 		instance = new Actual();
 		System.out.println();
 		try{
-			instance.showDataOf(pokemons.get(pokemonName.toLowerCase()));
+			instance.showDataOf(pokemons.get(pokemonName));
 		}catch(NullPointerException e){
 			return false;
 		}

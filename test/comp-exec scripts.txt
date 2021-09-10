@@ -1,0 +1,8 @@
+compile
+
+javac -cp "../lib/junit-platform-console-standalone-1.7.0-all.jar" Type.java Pokemon.java Parser.java Pokedex.java PokedexTest.java Hierarchy.java Actual.java Evolution.java FileUpdater.java
+
+
+execute
+
+java -jar "../lib/junit-platform-console-standalone-1.7.0-all.jar" -cp "." --select-class  PokedexTest ..reports-dir='reports'
