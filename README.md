@@ -1,14 +1,8 @@
-<div align="center">
-        _______  _______  __   __  ______  __       ______ /\     _/ _/  
-       / ___  / / ___  / / / _/_/ / ____/ /  \     / ____/ \ \  _/ _/    
-      / /__/ / / /  / / / /_/_/  / /__   / /\ \   / /__     \ \/ _/      
-     / _____/ / /  / / /   _/   / ___/  / /  ) ) / ___/      )  (        
-    / /      / /__/ / / /\ \   / /___  / /_-¨ / / /___    _/¨_/\ \       
-   /_/      /______/ /_/  \_\ /_____/ /_____/¨ /_____/  _/ _/   \ \      
-                                                      _/ _/      \ |     
-                                                     /__/         \|    
-</div>
-A naive implementation of a basic interactive-pokedex - the main Pokemon database- for run on Console. Written in Java for Unix-based OSs.
+
+![image align="center"](https://github.com/lucianojadur/pokedex/blob/master/img/title.png)
+
+
+A naive implementation of a basic interactive-pokedex - the main Pokemon database- for run on Console. Written in ***Java*** for Unix-based OSs.
 
 # EXECUTION
 	
