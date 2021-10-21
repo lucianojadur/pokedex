@@ -25,7 +25,7 @@ public class PokedexTest{
 
 		Integer expectedAmount = 3;
 		Integer[] levels = new Integer[] {10,1};
-		p.add("Squirtle",levels,"WATER");
+		p.add("squirtle",levels,"WATER");
 		
 		assertEquals(expectedAmount, p.amountOfPokemons());
 	}

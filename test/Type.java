@@ -4,7 +4,8 @@ public enum Type {
 	DRAGON,
 	EARTH,
 	ELECTRIC,
-	FIGHTER,
+	FAIRY,
+	FIGHT,
 	FIRE,
 	FLYING,
 	GHOST,
@@ -14,6 +15,8 @@ public enum Type {
 	PLANT,
 	POISON,
 	PSYCHIC,
+	ROCK,
 	STEEL,
-	WATER
+	WATER,
+	???
 }

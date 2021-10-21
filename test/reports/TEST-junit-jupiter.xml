@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Jupiter" tests="10" skipped="0" failures="0" errors="0" time="0.274" hostname="luciano-HP-Pavilion-Sleekbook-15" timestamp="2021-09-10T06:22:09">
+<testsuite name="JUnit Jupiter" tests="10" skipped="0" failures="0" errors="0" time="0.22" hostname="luciano-HP-Pavilion-Sleekbook-15" timestamp="2021-09-10T18:57:47">
 <properties>
 <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
 <property name="file.encoding" value="UTF-8"/>
@@ -48,31 +48,31 @@
 <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
 <property name="sun.os.patch.level" value="unknown"/>
 <property name="user.country" value="US"/>
-<property name="user.dir" value="/home/luciano/pokedex/app/pokedex_test/test"/>
+<property name="user.dir" value="/home/luciano/pokedex/app/test"/>
 <property name="user.home" value="/home/luciano"/>
 <property name="user.language" value="en"/>
 <property name="user.name" value="luciano"/>
 <property name="user.timezone" value="America/Argentina/Buenos_Aires"/>
 </properties>
-<testcase name="Test10APokemonInformationCanBeUpdated()" classname="PokedexTest" time="0.081">
+<testcase name="Test10APokemonInformationCanBeUpdated()" classname="PokedexTest" time="0.061">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test10APokemonInformationCanBeUpdated()]
 display-name: Test10APokemonInformationCanBeUpdated()
 ]]></system-out>
 </testcase>
-<testcase name="Test03IfAPokemonIsNotInTheDatabaseThenICanNotGetItIfILookForIt()" classname="PokedexTest" time="0.006">
+<testcase name="Test03IfAPokemonIsNotInTheDatabaseThenICanNotGetItIfILookForIt()" classname="PokedexTest" time="0.004">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test03IfAPokemonIsNotInTheDatabaseThenICanNotGetItIfILookForIt()]
 display-name: Test03IfAPokemonIsNotInTheDatabaseThenICanNotGetItIfILookForIt()
 ]]></system-out>
 </testcase>
-<testcase name="Test08GivenASpecificPokemonNameItsEvolutionsAreRetrievedFromTheDatabase()" classname="PokedexTest" time="0.005">
+<testcase name="Test08GivenASpecificPokemonNameItsEvolutionsAreRetrievedFromTheDatabase()" classname="PokedexTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test08GivenASpecificPokemonNameItsEvolutionsAreRetrievedFromTheDatabase()]
 display-name: Test08GivenASpecificPokemonNameItsEvolutionsAreRetrievedFromTheDatabase()
 ]]></system-out>
 </testcase>
-<testcase name="Test01AllPokemonsAreRegisteredOnTheDatabase()" classname="PokedexTest" time="0.007">
+<testcase name="Test01AllPokemonsAreRegisteredOnTheDatabase()" classname="PokedexTest" time="0.006">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test01AllPokemonsAreRegisteredOnTheDatabase()]
 display-name: Test01AllPokemonsAreRegisteredOnTheDatabase()
@@ -84,25 +84,25 @@ unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test02ICanNotAddAR
 display-name: Test02ICanNotAddARepeatedPokemonToTheDatabase()
 ]]></system-out>
 </testcase>
-<testcase name="Test09IfAddANewPokemonToThePokedexItRemainsSavedOnItsDatabase()" classname="PokedexTest" time="0.011">
+<testcase name="Test09IfAddANewPokemonToThePokedexItRemainsSavedOnItsDatabase()" classname="PokedexTest" time="0.009">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test09IfAddANewPokemonToThePokedexItRemainsSavedOnItsDatabase()]
 display-name: Test09IfAddANewPokemonToThePokedexItRemainsSavedOnItsDatabase()
 ]]></system-out>
 </testcase>
-<testcase name="Test07GivenASpecificPokemonNameItsAbilitiesAreRetrievedFromTheDatabase()" classname="PokedexTest" time="0.002">
+<testcase name="Test07GivenASpecificPokemonNameItsAbilitiesAreRetrievedFromTheDatabase()" classname="PokedexTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test07GivenASpecificPokemonNameItsAbilitiesAreRetrievedFromTheDatabase()]
 display-name: Test07GivenASpecificPokemonNameItsAbilitiesAreRetrievedFromTheDatabase()
 ]]></system-out>
 </testcase>
-<testcase name="Test05GivenASpecificPokemonNameItsTypeIsRetrievedFromTheDatabase()" classname="PokedexTest" time="0.002">
+<testcase name="Test05GivenASpecificPokemonNameItsTypeIsRetrievedFromTheDatabase()" classname="PokedexTest" time="0.003">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test05GivenASpecificPokemonNameItsTypeIsRetrievedFromTheDatabase()]
 display-name: Test05GivenASpecificPokemonNameItsTypeIsRetrievedFromTheDatabase()
 ]]></system-out>
 </testcase>
-<testcase name="Test06GivenASpecificPokemonNameItsLevelWhenWasFoundIsRetrievedFromTheDatabase()" classname="PokedexTest" time="0.003">
+<testcase name="Test06GivenASpecificPokemonNameItsLevelWhenWasFoundIsRetrievedFromTheDatabase()" classname="PokedexTest" time="0.002">
 <system-out><![CDATA[
 unique-id: [engine:junit-jupiter]/[class:PokedexTest]/[method:Test06GivenASpecificPokemonNameItsLevelWhenWasFoundIsRetrievedFromTheDatabase()]
 display-name: Test06GivenASpecificPokemonNameItsLevelWhenWasFoundIsRetrievedFromTheDatabase()

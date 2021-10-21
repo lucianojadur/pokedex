@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Vintage" tests="0" skipped="0" failures="0" errors="0" time="0.004" hostname="luciano-HP-Pavilion-Sleekbook-15" timestamp="2021-09-10T06:22:09">
+<testsuite name="JUnit Vintage" tests="0" skipped="0" failures="0" errors="0" time="0.003" hostname="luciano-HP-Pavilion-Sleekbook-15" timestamp="2021-09-10T18:57:47">
 <properties>
 <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
 <property name="file.encoding" value="UTF-8"/>
@@ -48,7 +48,7 @@
 <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
 <property name="sun.os.patch.level" value="unknown"/>
 <property name="user.country" value="US"/>
-<property name="user.dir" value="/home/luciano/pokedex/app/pokedex_test/test"/>
+<property name="user.dir" value="/home/luciano/pokedex/app/test"/>
 <property name="user.home" value="/home/luciano"/>
 <property name="user.language" value="en"/>
 <property name="user.name" value="luciano"/>
